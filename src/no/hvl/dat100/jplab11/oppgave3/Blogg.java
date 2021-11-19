@@ -5,46 +5,76 @@ import no.hvl.dat100.jplab11.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	private Innlegg[] tabell;
+	private int nesteLedige;
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		tabell = new Innlegg[20];
+		//throw new UnsupportedOperationException(TODO.constructor("Blogg"));
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		tabell = new Innlegg[lengde];
+		nesteLedige = 0;
 	}
-
+	
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return nesteLedige;
 	}
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
+		return tabell;
 
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean funnet = false;
+		int pos = 0;
+		while ( pos < nesteLedige && !funnet) {
+			if (Innlegg.erLik(Innlegg.getId()))
+				funnet = true;
+			else 
+				pos++;
+		}
+		if (funnet)
+			return pos;
+		else 
+			return -1;
+			
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		boolean funnet = true;
+		int pos = finnes(innlegg);
+		if (pos >=0)
+			return true;
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
+		boolean ledig = false; 
+		
+		if(nesteLedige < tabell.length) {
+			ledig = true;
+		}
+		return ledig;
+		}
 
-	}
 	
 	public boolean leggTil(Innlegg innlegg) {
+		boolean ny = true;
+		if (ny && nesteLedige < tabell.length) {
+			tabell[nesteLedige] = innlegg;
+			nesteLedige++;
+			return true;
+		}
+		else
+			return false;
+		}
 
-		throw new UnsupportedOperationException(TODO.method());
-	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		return nesteLedige + "\nTESKT" + "\n" + Innlegg.getId() + "\n" + Innlegg.getBruker() + "\n" + Innlegg.getDato() + "\n" + Innlegg.getLikes() + "\nen tekst" + "\nBILDE" + Innlegg.getId() + "\n" + Innlegg.getBruker() + "\n" + Innlegg.getDato() + "\n" + Innlegg.getLikes() + "\net bilde" + Bilde.getUrl() + "\n";
 	}
 
 	// valgfrie oppgaver nedenfor
